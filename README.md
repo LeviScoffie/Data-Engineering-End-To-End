@@ -1,7 +1,7 @@
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
-    -e POSTGRES_DB:"taxi_ny" \
+    -e POSTGRES_DB=ny_taxi" \
     -v "/home/leviscoffie/Data-Engineering-End-To-End/week_1_basics_n_setup/2_docker_sql/2_docker_sql ny_taxi_postgres_data:/var/lib/postgresql/data" \
     -p 5432:5432
      postgres:13
@@ -21,7 +21,7 @@ docker network create network-pg
 docker run -it \
     -e POSTGRES_USER="root" \
     -e POSTGRES_PASSWORD="root" \
-    -e POSTGRES_DB:"taxi_ny" \
+    -e POSTGRES_DB=ny_taxi" \
     -v "/home/leviscoffie/Data-Engineering-End-To-End/week_1_basics_n_setup/2_docker_sql/2_docker_sql ny_taxi_postgres_data:/var/lib/postgresql/data" \
     -p 5432:5432 \
     --network=network-pg \
@@ -47,14 +47,14 @@ python ingest_data.py \
   --password=root \
   --host=localhost \
   --port=5432 \ 
-  --db=taxi_ny \
+  --d=ny_taxi \
   --table_name=yellow_taxi_trips \
   --url=${URL}
 
 
 
 
-python ingest_data.py --user=root  --password=root   --host=localhost  --port=5432 --db=taxi_ny --table_name=yellow_taxi_trips  --url=${URL}
+python ingest_data.py --user=root  --password=root   --host=localhost  --port=5432 --d=ny_taxi --table_name=yellow_taxi_trips  --url=${URL}
 
 ## INGESTING DATA THROUGH CREATED PIPELINE INTO POSTGRES DATABASE
 URL="http://192.168.100.198:8000/yellow_tripdata_2021-01.csv"
